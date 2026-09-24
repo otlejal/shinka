@@ -1,431 +1,788 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="logo.png">
-<title>Выездной шиномонтаж 24/7 - Калининград и область</title>
-<style>
-  /* ===== БАЗА (mobile first) ===== */
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body {
-    font-family: 'Arial', sans-serif;
-    color:#fff;
-    background:#000;
-    line-height:1.4;
-    -webkit-tap-highlight-color: transparent;
-  }
-  a { text-decoration:none; color:inherit; }
-  img { max-width:100%; height:auto; display:block; }
-
-  /* ===== ХЕДЕР ===== */
-  header {
-    position: absolute;
-    top:0; left:0; right:0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 15px;
-    background: rgba(0,0,0,0.7);
-    z-index:10;
-    gap:10px;
-  }
-  .logo {
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    line-height:1.15;
-  }
-  .logo .name {
-    font-size:15px;
-    font-weight:bold;
-    letter-spacing:0.5px;
-    text-transform:uppercase;
-  }
-  .logo .name .accent { color:#f0c040; }
-  .logo .sub {
-    font-size:8px;
-    letter-spacing:1.5px;
-    color:#ccc;
-    text-transform:uppercase;
-  }
-  .header-phone {
-    display:flex;
-    align-items:center;
-    gap:6px;
-    font-size:14px;
-    font-weight:bold;
-    color:#fff;
-    white-space:nowrap;
-  }
-  .header-phone .dot {
-    width:8px; height:8px;
-    background:#25D366;
-    border-radius:50%;
-    display:inline-block;
-  }
-
-  /* ===== ГЛАВНЫЙ ЭКРАН ===== */
-  .hero {
-    position:relative;
-    min-height:100vh;
-    min-height:100dvh;
-    background:
-      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
-      url('cover.webp')
-      center/cover no-repeat;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:100px 15px 60px;
-  }
-  .hero .car { font-size:22px; margin-bottom:14px; }
-  .hero h1 {
-    font-size:20px;
-    font-weight:bold;
-    text-transform:uppercase;
-    line-height:1.35;
-    max-width:900px;
-    margin-bottom:22px;
-    text-shadow:0 2px 10px rgba(0,0,0,0.8);
-  }
-  .hero .yellow {
-    color:#f0c040;
-    font-size:15px;
-    font-weight:bold;
-    margin-bottom:16px;
-    text-shadow:0 2px 8px rgba(0,0,0,0.9);
-  }
-  .hero .phone-red {
-    color:#e30613;
-    font-size:26px;
-    font-weight:900;
-    text-decoration:underline;
-    text-shadow:0 2px 10px rgba(0,0,0,0.9);
-    transition:transform .2s;
-    display:inline-block;
-  }
-  .hero .phone-red:hover { transform:scale(1.05); }
-
-  /* ===== СЕКЦИЯ "ПОЧЕМУ МЫ" ===== */
-  .why-us {
-    background: #ffffff;
-    color: #222;
-    padding: 50px 15px 45px;
-    text-align: center;
-  }
-  .why-us h2 {
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #222;
-    margin-bottom: 10px;
-    letter-spacing: 0.5px;
-    line-height: 1.35;
-  }
-  .why-us .divider,
-  .contacts .divider {
-    width: 50px;
-    height: 3px;
-    background: #cccccc;
-    margin: 0 auto 35px;
-  }
-  .features-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 28px 15px;
-    max-width: 900px;
-    margin: 0 auto 40px;
-  }
-  .feature-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .feature-item .icon-circle {
-    width: 76px;
-    height: 76px;
-    border-radius: 50%;
-    border: 2px solid #e91e63;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 34px;
-    margin-bottom: 14px;
-    transition: transform .3s, box-shadow .3s;
-  }
-  .feature-item .icon-circle:hover {
-    transform: scale(1.08);
-    box-shadow: 0 6px 20px rgba(233,30,99,0.25);
-  }
-  .feature-item p {
-    font-size: 14px;
-    font-weight: 600;
-    color: #222;
-    line-height: 1.4;
-    max-width: 220px;
-  }
-
-  /* ===== ФОТО АВТОМОБИЛЯ ===== */
-  .van-photo {
-    max-width: 900px;
-    margin: 0 auto;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.15);
-  }
-
-  /* ===== СЕКЦИЯ "КОНТАКТЫ" ===== */
-  .contacts {
-    background: #ffffff;
-    color: #222;
-    padding: 45px 15px 50px;
-    text-align: center;
-    border-top: 1px solid #eee;
-  }
-  .contacts h2 {
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #222;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
-  }
-  .contact-row {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    max-width: 900px;
-    margin: 0 auto 25px;
-    text-align: left;
-  }
-  .contact-row .label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: bold;
-    color: #222;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .contact-row .label .ico { font-size: 16px; color: #666; }
-  .contact-row .value {
-    font-size: 15px;
-    color: #444;
-    line-height: 1.5;
-  }
-  .contact-row .value .small {
-    font-size: 12px;
-    color: #888;
-    display: block;
-  }
-  .map-wrap {
-    max-width: 1200px;
-    margin: 20px auto 30px;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
-  }
-  .map-wrap iframe {
-    width: 100%;
-    height: 280px;
-    border: 0;
-    display: block;
-  }
-
-  /* ===== ПЛАВАЮЩАЯ КНОПКА ЗВОНКА ===== */
-  .call-fab {
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #25D366;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 6px 20px rgba(37,211,102,0.5);
-    z-index: 1000;
-    transition: transform .25s, box-shadow .25s;
-    animation: pulse 2s infinite;
-  }
-  .call-fab:hover {
-    transform: scale(1.08);
-    box-shadow: 0 8px 28px rgba(37,211,102,0.7);
-  }
-  .call-fab svg {
-    width: 30px;
-    height: 30px;
-    fill: #fff;
-  }
-  @keyframes pulse {
-    0% { box-shadow: 0 6px 20px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0.6); }
-    70% { box-shadow: 0 6px 20px rgba(37,211,102,0.5), 0 0 0 16px rgba(37,211,102,0); }
-    100% { box-shadow: 0 6px 20px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0); }
-  }
-
-  /* ===== ПЛАНШЕТ (>=600px) ===== */
-  @media (min-width: 600px) {
-    header { padding:14px 30px; }
-    .logo .name { font-size:17px; }
-    .logo .sub { font-size:9px; letter-spacing:2px; }
-    .header-phone { font-size:15px; }
-
-    .hero { padding:120px 25px 80px; }
-    .hero h1 { font-size:28px; }
-    .hero .yellow { font-size:20px; }
-    .hero .phone-red { font-size:34px; }
-
-    .why-us { padding: 60px 30px 55px; }
-    .why-us h2 { font-size:22px; }
-    .features-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 35px 20px;
+  <title>Выездной шиномонтаж 24/7 - Калининград и область</title>
+  <style>
+    /* ===== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===== */
+    :root {
+      /* Скорость карусели услуг: чем больше секунд — тем медленнее */
+      --carousel-speed: 15s;
     }
 
-    .contacts { padding: 55px 30px 60px; }
-    .contacts h2 { font-size:23px; }
+    /* ===== БАЗА (mobile first) ===== */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: 'Arial', sans-serif;
+      color:#fff;
+      background:#000;
+      line-height:1.4;
+      -webkit-tap-highlight-color: transparent;
+      max-width: 1920px;
+      margin: auto;
+    }
+    a { text-decoration:none; color:inherit; }
+    img { max-width:100%; height:auto; display:block; }
+
+    /* ===== ХЕДЕР ===== */
+    header {
+      position: absolute;
+      top:0; left:0; right:0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:12px 15px;
+      background: rgba(0,0,0,0.7);
+      z-index:10;
+      gap:10px;
+      max-width: 1920px;
+      margin: auto;
+    }
+    .logo {
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      line-height:1.15;
+    }
+    .logo .name {
+      font-size:15px;
+      font-weight:bold;
+      letter-spacing:0.5px;
+      text-transform:uppercase;
+    }
+    .logo .name .accent { color:#f0c040; }
+    .logo .sub {
+      font-size:8px;
+      letter-spacing:1.5px;
+      color:#ccc;
+      text-transform:uppercase;
+    }
+    .header-phone {
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:14px;
+      font-weight:bold;
+      color:#fff;
+      white-space:nowrap;
+    }
+    .header-phone .dot {
+      width:8px; height:8px;
+      background:#25D366;
+      border-radius:50%;
+      display:inline-block;
+    }
+
+    /* ===== ГЛАВНЫЙ ЭКРАН ===== */
+    .hero {
+      position:relative;
+      min-height:100vh;
+      min-height:100dvh;
+      background:
+              linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+              url('cover.webp')
+              center/cover no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      overflow: hidden;
+    }
+
+    /* Текстовый блок hero (чуть выше центра) */
+    .hero-content {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      flex: 1 1 auto;
+      width: 100%;
+      padding-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size:20px;
+      font-weight:bold;
+      text-transform:uppercase;
+      line-height:1.35;
+      max-width:900px;
+      margin-bottom:22px;
+      text-shadow:0 2px 10px rgba(0,0,0,0.8);
+    }
+    .hero .yellow {
+      color:#f0c040;
+      font-size:15px;
+      font-weight:bold;
+      margin-bottom:16px;
+      text-shadow:0 2px 8px rgba(0,0,0,0.9);
+    }
+    .hero .phone-red {
+      color:#e30613;
+      font-size:26px;
+      font-weight:900;
+      /*text-decoration:underline;*/
+      text-shadow:0 2px 10px rgba(0,0,0,0.9);
+      display:inline-block;
+      /* ===== ПУЛЬСАЦИЯ ===== */
+      animation: phone-pulse 1.8s ease-in-out infinite;
+      will-change: transform, text-shadow;
+    }
+
+    /* Пульсация номера телефона */
+    @keyframes phone-pulse {
+      0% {
+        transform: scale(1);
+        text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      }
+      50% {
+        transform: scale(1.08);
+        text-shadow: 0 2px 10px rgba(0,0,0,0.9),
+        0 0 18px rgba(227, 6, 19, 0.85),
+        0 0 32px rgba(227, 6, 19, 0.55);
+      }
+      100% {
+        transform: scale(1);
+        text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      }
+    }
+
+    /* При наведении — пауза, чтобы удобнее было нажать */
+    .hero .phone-red:hover {
+      animation-play-state: paused;
+    }
+
+    /* Отключаем анимацию для пользователей с чувствительностью к движению */
+    @media (prefers-reduced-motion: reduce) {
+      .hero .phone-red { animation: none; }
+    }
+
+    /* ===== КАРУСЕЛЬ УСЛУГ (внутри hero, снизу) ===== */
+    .services {
+      position: relative;
+      width: 100%;
+      padding: 30px 0 40px;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+    /* Градиентные маски по краям */
+    .services::before,
+    .services::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    /*.services::before {*/
+    /*  left: 0;*/
+    /*  background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);*/
+    /*}*/
+    /*.services::after {*/
+    /*  right: 0;*/
+    /*  background: linear-gradient(to left, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);*/
+    /*}*/
+
+    .services-track {
+      display: flex;
+      width: max-content;
+      animation: scroll-services var(--carousel-speed) linear infinite;
+    }
+    .services-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scroll-services {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .service-item {
+      flex: 0 0 auto;
+      width: 170px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding: 0 15px;
+    }
+    /* Оранжевый разделитель справа */
+    .service-item::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 10%;
+      height: 80%;
+      width: 2px;
+      background: #e67e22;
+    }
+    .service-item .service-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .service-item .service-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 1.6;
+    }
+    .service-item p {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.35;
+      color: #fff;
+      max-width: 150px;
+      text-align: center;
+    }
+
+    /* ===== СЕКЦИЯ "ПОЧЕМУ МЫ" ===== */
+    .why-us {
+      background: #ffffff;
+      color: #222;
+      padding: 50px 15px 45px;
+      text-align: center;
+    }
+    .why-us h2 {
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #222;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+      line-height: 1.35;
+    }
+    .why-us .divider,
+    .contacts .divider {
+      width: 50px;
+      height: 3px;
+      background: #cccccc;
+      margin: 0 auto 35px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px 15px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .feature-item .icon-circle {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      border: 2px solid #e91e63;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 34px;
+      margin-bottom: 14px;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .feature-item .icon-circle:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(233,30,99,0.25);
+    }
+    .feature-item p {
+      font-size: 14px;
+      font-weight: 600;
+      color: #222;
+      line-height: 1.4;
+      max-width: 220px;
+    }
+
+    /* ===== СЕКЦИЯ "КОНТАКТЫ" ===== */
+    .contacts {
+      background: #ffffff;
+      color: #222;
+      padding: 45px 15px 50px;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+    .contacts h2 {
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #222;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
     .contact-row {
-      flex-direction: row;
+      display: flex;
+      flex-direction: column;
       align-items: flex-start;
-      gap: 25px;
+      gap: 6px;
+      max-width: 900px;
+      margin: 0 auto 25px;
+      text-align: left;
     }
-    .contact-row .label { min-width: 150px; }
-    .map-wrap iframe { height: 350px; }
-
-    .call-fab { right: 22px; bottom: 22px; width: 64px; height: 64px; }
-  }
-
-  /* ===== ДЕСКТОП (>=900px) ===== */
-  @media (min-width: 900px) {
-    header { padding:15px 40px; }
-    .logo .name { font-size:20px; }
-    .header-phone { font-size:16px; }
-
-    .hero { padding:160px 40px 100px; }
-    .hero .car { font-size:26px; }
-    .hero h1 { font-size:38px; margin-bottom:30px; }
-    .hero .yellow { font-size:26px; margin-bottom:18px; }
-    .hero .phone-red { font-size:44px; }
-
-    .why-us { padding: 70px 40px 60px; }
-    .why-us h2 { font-size:26px; }
-    .features-grid {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px 30px;
+    .contact-row .label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #222;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .feature-item .icon-circle { width: 90px; height: 90px; font-size: 40px; }
+    .contact-row .label .ico { font-size: 16px; color: #666; }
+    .contact-row .value {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.5;
+    }
+    .contact-row .value .small {
+      font-size: 12px;
+      color: #888;
+      display: block;
+    }
+    .map-wrap {
+      max-width: 1200px;
+      margin: 20px auto 30px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 280px;
+      border: 0;
+      display: block;
+    }
 
-    .contacts { padding: 60px 40px; }
-    .contacts h2 { font-size:26px; }
-    .map-wrap iframe { height: 400px; }
-  }
-</style>
+    /* ===== ПЛАВАЮЩАЯ КНОПКА ЗВОНКА ===== */
+    .call-fab {
+      position: fixed;
+      right: 32px;
+      bottom: 32px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.5);
+      z-index: 1000;
+      transition: transform .25s, box-shadow .25s;
+      animation: pulse 2s infinite;
+    }
+    .call-fab:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 28px rgba(37,211,102,0.7);
+    }
+    .call-fab svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 6px 20px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0.6); }
+      70% { box-shadow: 0 6px 20px rgba(37,211,102,0.5), 0 0 0 16px rgba(37,211,102,0); }
+      100% { box-shadow: 0 6px 20px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0); }
+    }
+
+    /* ===== ПЛАНШЕТ (>=600px) ===== */
+    @media (min-width: 600px) {
+      header { padding:14px 30px; }
+      .logo .name { font-size:17px; }
+      .logo .sub { font-size:9px; letter-spacing:2px; }
+      .header-phone { font-size:15px; }
+
+      .hero-content { padding-bottom: 40px; }
+      .hero h1 { font-size:28px; }
+      .hero .yellow { font-size:20px; }
+      .hero .phone-red { font-size:34px; }
+
+      .service-item { width: 200px; }
+      .service-item .service-icon { width: 70px; height: 70px; }
+      .service-item p { font-size: 13px; max-width: 170px; }
+      .services { padding: 35px 0 45px; }
+
+      .why-us { padding: 60px 30px 55px; }
+      .why-us h2 { font-size:22px; }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px 20px;
+      }
+
+      .contacts { padding: 55px 30px 60px; }
+      .contacts h2 { font-size:23px; }
+      .contact-row {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 25px;
+      }
+      .contact-row .label { min-width: 150px; }
+      .map-wrap iframe { height: 350px; }
+
+      .call-fab { right: 32px; bottom: 32px; width: 64px; height: 64px; }
+    }
+
+    /* ===== ДЕСКТОП (>=900px) ===== */
+    @media (min-width: 900px) {
+      header { padding:15px 40px; }
+      .logo .name { font-size:20px; }
+      .header-phone { font-size:16px; }
+
+      .hero-content { padding-bottom: 50px; }
+      .hero .car { font-size:26px; }
+      .hero h1 { font-size:38px; margin-bottom:30px; }
+      .hero .yellow { font-size:26px; margin-bottom:18px; }
+      .hero .phone-red { font-size:44px; }
+
+      .service-item { width: 240px; }
+      .service-item .service-icon { width: 80px; height: 80px; }
+      .service-item p { font-size: 14px; }
+      .services { padding: 40px 0 55px; }
+
+      .why-us { padding: 70px 40px 60px; }
+      .why-us h2 { font-size:26px; }
+      .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px 30px;
+      }
+      .feature-item .icon-circle { width: 90px; height: 90px; font-size: 40px; }
+
+      .contacts { padding: 60px 40px; }
+      .contacts h2 { font-size:26px; }
+      .map-wrap iframe { height: 400px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ХЕДЕР -->
-  <header>
-    <div class="logo">
-      <div class="name">Выездной <span class="accent">шиномонтаж</span></div>
-      <div class="sub">Калининград и область</div>
-    </div>
-    <a class="header-phone" href="tel:+79114867111">
-      <span class="dot"></span> +7 911 486-71-11
-    </a>
-  </header>
-
-  <!-- ГЛАВНЫЙ ЭКРАН -->
-  <section class="hero">
-<!--    <div class="car">🚗</div>-->
-    <h1>Круглосуточный выездной шиномонтаж по Калининграду и области</h1>
-
-    <p class="yellow">Работаем быстро и качественно - звоните 24/7</p>
-    <a class="phone-red" href="tel:+79114867111">+7 911 486-71-11</a>
-  </section>
-
-  <!-- СЕКЦИЯ "ПОЧЕМУ МЫ" -->
-  <section class="why-us">
-    <h2>Выездной шиномонтаж в Калининграде — почему мы?</h2>
-    <div class="divider"></div>
-
-    <div class="features-grid">
-      <div class="feature-item">
-        <div class="icon-circle">👨‍💼</div>
-        <p>Индивидуальный подход</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon-circle">🚐</div>
-        <p>Все оборудование мобильное</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon-circle">⏱️</div>
-        <p>Быстрый выезд</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon-circle">🤝</div>
-        <p>Честные цены</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon-circle">🏅</div>
-        <p>Полный спектр услуг по шиномонтажу</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon-circle">🚚</div>
-        <p>Работаем 24 часа в сутки</p>
-      </div>
-    </div>
-
-<!--    &lt;!&ndash; Фото автомобиля &ndash;&gt;-->
-<!--    <div class="van-photo">-->
-<!--      <img src="images/van.jpg" alt="Выездной шиномонтаж 24/7 — автомобиль">-->
-<!--    </div>-->
-  </section>
-
-  <!-- СЕКЦИЯ "КОНТАКТЫ" -->
-  <section class="contacts">
-    <h2>Контакты</h2>
-    <div class="divider"></div>
-
-    <div class="contact-row">
-      <div class="label"><span class="ico">📍</span> Адрес</div>
-      <div class="value">
-        Алея Смелых 145, Калининград, Россия
-        <span class="small">Основная</span>
-      </div>
-    </div>
-
-    <!-- Яндекс.Карта -->
-    <div class="map-wrap">
-      <iframe
-        src="https://yandex.ru/map-widget/v1/?ll=20.549300%2C54.679300&z=16&pt=20.549300,54.679300,pm2rdm"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-
-    <div class="contact-row">
-      <div class="label"><span class="ico">📞</span> Телефон</div>
-      <div class="value">
-        <a href="tel:+79114867111" style="color:#222; text-decoration:none;">
-          +7 (911) 486-71-11
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ПЛАВАЮЩАЯ КНОПКА ЗВОНКА -->
-  <a class="call-fab" href="tel:+79114867111" aria-label="Позвонить">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.57 1 1 0 01-.25 1.02l-2.2 2.2z"/>
-    </svg>
+<!-- ХЕДЕР -->
+<header>
+  <div class="logo">
+    <div class="name">Выездной <span class="accent">шиномонтаж</span></div>
+    <div class="sub">Калининград и область</div>
+  </div>
+  <a class="header-phone" href="tel:+74012906606">
+    <span class="dot"></span> +7 4012 906-606
   </a>
+</header>
+
+<!-- ГЛАВНЫЙ ЭКРАН (с каруселью внутри) -->
+<section class="hero">
+
+  <!-- Текстовый блок -->
+  <div class="hero-content">
+    <h1>Круглосуточный выездной шиномонтаж по Калининграду и области</h1>
+    <p class="yellow">Работаем быстро и качественно - звоните 24/7</p>
+    <a class="phone-red" href="tel:+74012906606">+7 4012 906-606</a>
+  </div>
+
+  <!-- КАРУСЕЛЬ УСЛУГ (внизу hero) -->
+  <div class="services">
+    <div class="services-track">
+
+      <!-- ===== ПЕРВЫЙ НАБОР ===== -->
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="26"/>
+            <circle cx="32" cy="32" r="10"/>
+            <line x1="32" y1="6" x2="32" y2="16"/>
+            <line x1="32" y1="48" x2="32" y2="58"/>
+            <line x1="6" y1="32" x2="16" y2="32"/>
+            <line x1="48" y1="32" x2="58" y2="32"/>
+            <line x1="13" y1="13" x2="20" y2="20"/>
+            <line x1="44" y1="44" x2="51" y2="51"/>
+            <line x1="13" y1="51" x2="20" y2="44"/>
+            <line x1="44" y1="20" x2="51" y2="13"/>
+          </svg>
+        </div>
+        <p>Шиномонтаж легковой</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="26"/>
+            <circle cx="32" cy="32" r="16"/>
+            <circle cx="32" cy="32" r="6"/>
+            <line x1="32" y1="16" x2="32" y2="26"/>
+            <line x1="32" y1="38" x2="32" y2="48"/>
+            <line x1="16" y1="32" x2="26" y2="32"/>
+            <line x1="38" y1="32" x2="48" y2="32"/>
+            <line x1="21" y1="21" x2="27" y2="27"/>
+            <line x1="37" y1="37" x2="43" y2="43"/>
+            <line x1="21" y1="43" x2="27" y2="37"/>
+            <line x1="37" y1="27" x2="43" y2="21"/>
+          </svg>
+        </div>
+        <p>Шиномонтаж грузовой</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="32" cy="32" rx="14" ry="24"/>
+            <ellipse cx="32" cy="32" rx="6" ry="18"/>
+            <line x1="22" y1="14" x2="22" y2="50"/>
+            <line x1="42" y1="14" x2="42" y2="50"/>
+          </svg>
+        </div>
+        <p>Ремонт проколов</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="14" width="28" height="36" rx="4"/>
+            <circle cx="32" cy="32" r="10"/>
+            <line x1="32" y1="4" x2="32" y2="14"/>
+            <line x1="32" y1="50" x2="32" y2="60"/>
+            <line x1="10" y1="32" x2="18" y2="32"/>
+            <line x1="46" y1="32" x2="54" y2="32"/>
+          </svg>
+        </div>
+        <p>Балансировка колёс</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="26" cy="34" r="16"/>
+            <circle cx="26" cy="34" r="6"/>
+            <path d="M46 18 L58 18 L58 34 L50 34"/>
+            <path d="M46 18 L38 26"/>
+            <path d="M50 34 L42 42"/>
+          </svg>
+        </div>
+        <p>Замена колёс</p>
+      </div>
+
+      <!-- ===== ДУБЛЬ (для бесшовной прокрутки) ===== -->
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="26"/>
+            <circle cx="32" cy="32" r="10"/>
+            <line x1="32" y1="6" x2="32" y2="16"/>
+            <line x1="32" y1="48" x2="32" y2="58"/>
+            <line x1="6" y1="32" x2="16" y2="32"/>
+            <line x1="48" y1="32" x2="58" y2="32"/>
+            <line x1="13" y1="13" x2="20" y2="20"/>
+            <line x1="44" y1="44" x2="51" y2="51"/>
+            <line x1="13" y1="51" x2="20" y2="44"/>
+            <line x1="44" y1="20" x2="51" y2="13"/>
+          </svg>
+        </div>
+        <p>Шиномонтаж легковой</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="26"/>
+            <circle cx="32" cy="32" r="16"/>
+            <circle cx="32" cy="32" r="6"/>
+            <line x1="32" y1="16" x2="32" y2="26"/>
+            <line x1="32" y1="38" x2="32" y2="48"/>
+            <line x1="16" y1="32" x2="26" y2="32"/>
+            <line x1="38" y1="32" x2="48" y2="32"/>
+            <line x1="21" y1="21" x2="27" y2="27"/>
+            <line x1="37" y1="37" x2="43" y2="43"/>
+            <line x1="21" y1="43" x2="27" y2="37"/>
+            <line x1="37" y1="27" x2="43" y2="21"/>
+          </svg>
+        </div>
+        <p>Шиномонтаж грузовой</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="32" cy="32" rx="14" ry="24"/>
+            <ellipse cx="32" cy="32" rx="6" ry="18"/>
+            <line x1="22" y1="14" x2="22" y2="50"/>
+            <line x1="42" y1="14" x2="42" y2="50"/>
+          </svg>
+        </div>
+        <p>Ремонт проколов</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="14" width="28" height="36" rx="4"/>
+            <circle cx="32" cy="32" r="10"/>
+            <line x1="32" y1="4" x2="32" y2="14"/>
+            <line x1="32" y1="50" x2="32" y2="60"/>
+            <line x1="10" y1="32" x2="18" y2="32"/>
+            <line x1="46" y1="32" x2="54" y2="32"/>
+          </svg>
+        </div>
+        <p>Балансировка колёс</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="26" cy="34" r="16"/>
+            <circle cx="26" cy="34" r="6"/>
+            <path d="M46 18 L58 18 L58 34 L50 34"/>
+            <path d="M46 18 L38 26"/>
+            <path d="M50 34 L42 42"/>
+          </svg>
+        </div>
+        <p>Замена колёс</p>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="26"/>
+            <circle cx="32" cy="32" r="10"/>
+            <line x1="32" y1="6" x2="32" y2="16"/>
+            <line x1="32" y1="48" x2="32" y2="58"/>
+            <line x1="6" y1="32" x2="16" y2="32"/>
+            <line x1="48" y1="32" x2="58" y2="32"/>
+            <line x1="13" y1="13" x2="20" y2="20"/>
+            <line x1="44" y1="44" x2="51" y2="51"/>
+            <line x1="13" y1="51" x2="20" y2="44"/>
+            <line x1="44" y1="20" x2="51" y2="13"/>
+          </svg>
+        </div>
+        <p>Шиномонтаж легковой</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="26"/>
+            <circle cx="32" cy="32" r="16"/>
+            <circle cx="32" cy="32" r="6"/>
+            <line x1="32" y1="16" x2="32" y2="26"/>
+            <line x1="32" y1="38" x2="32" y2="48"/>
+            <line x1="16" y1="32" x2="26" y2="32"/>
+            <line x1="38" y1="32" x2="48" y2="32"/>
+            <line x1="21" y1="21" x2="27" y2="27"/>
+            <line x1="37" y1="37" x2="43" y2="43"/>
+            <line x1="21" y1="43" x2="27" y2="37"/>
+            <line x1="37" y1="27" x2="43" y2="21"/>
+          </svg>
+        </div>
+        <p>Шиномонтаж грузовой</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="32" cy="32" rx="14" ry="24"/>
+            <ellipse cx="32" cy="32" rx="6" ry="18"/>
+            <line x1="22" y1="14" x2="22" y2="50"/>
+            <line x1="42" y1="14" x2="42" y2="50"/>
+          </svg>
+        </div>
+        <p>Ремонт проколов</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="14" width="28" height="36" rx="4"/>
+            <circle cx="32" cy="32" r="10"/>
+            <line x1="32" y1="4" x2="32" y2="14"/>
+            <line x1="32" y1="50" x2="32" y2="60"/>
+            <line x1="10" y1="32" x2="18" y2="32"/>
+            <line x1="46" y1="32" x2="54" y2="32"/>
+          </svg>
+        </div>
+        <p>Балансировка колёс</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="26" cy="34" r="16"/>
+            <circle cx="26" cy="34" r="6"/>
+            <path d="M46 18 L58 18 L58 34 L50 34"/>
+            <path d="M46 18 L38 26"/>
+            <path d="M50 34 L42 42"/>
+          </svg>
+        </div>
+        <p>Замена колёс</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- СЕКЦИЯ "ПОЧЕМУ МЫ" -->
+<section class="why-us">
+  <h2>Выездной шиномонтаж в Калининграде — почему мы?</h2>
+  <div class="divider"></div>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="icon-circle">👨‍💼</div>
+      <p>Индивидуальный подход</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon-circle">🚐</div>
+      <p>Все оборудование мобильное</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon-circle">⏱️</div>
+      <p>Быстрый выезд</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon-circle">🤝</div>
+      <p>Честные цены</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon-circle">🏅</div>
+      <p>Полный спектр услуг по шиномонтажу</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon-circle">🚚</div>
+      <p>Работаем 24 часа в сутки</p>
+    </div>
+  </div>
+</section>
+
+<!-- СЕКЦИЯ "КОНТАКТЫ" -->
+<section class="contacts">
+  <h2>Контакты</h2>
+  <div class="divider"></div>
+
+  <div class="contact-row">
+    <div class="label"><span class="ico">📍</span> Адрес</div>
+    <div class="value">
+      Аллея Смелых 145, Калининград, Россия
+    </div>
+  </div>
+
+  <!-- Яндекс.Карта -->
+  <div class="map-wrap">
+    <iframe
+            src="https://yandex.ru/map-widget/v1/?ll=20.521294%2C54.672336&z=16&pt=20.521294,54.672336&,pm2rdm"
+            allowfullscreen
+            loading="lazy">
+    </iframe>
+  </div>
+  <div class="contact-row">
+    <div class="label"><span class="ico">📞</span> Телефон</div>
+    <div class="value">
+      <a href="tel:+74012906606">
+        +7 (4012) 90-66-06
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ПЛАВАЮЩАЯ КНОПКА ЗВОНКА -->
+<a class="call-fab" href="tel:+74012906606" aria-label="Позвонить">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.57 1 1 0 01-.25 1.02l-2.2 2.2z"/>
+  </svg>
+</a>
 
 </body>
 </html>
