@@ -81,17 +81,35 @@
       position:relative;
       min-height:100vh;
       min-height:100dvh;
-      background:
+      background-color: #000;
+      background-image:
               linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
-              url('cover.webp')
-              center/cover no-repeat;
+              url('cover.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      /* Мобильный дефолт — фон отдалён */
+      background-size: auto 100%;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
       text-align:center;
       overflow: hidden;
+      transition: background-size 0.4s ease;
     }
+
+
+    @media (max-width: 1200px) {
+      .hero { background-size: auto 100%;
+        background-position: 35% center;}
+    }
+
+
+    /* Десктоп 1200–1499px — средний зум */
+    @media (min-width: 1200px) {
+      .hero { background-size: cover; }
+    }
+
 
     /* Текстовый блок hero (чуть выше центра) */
     .hero-content {
